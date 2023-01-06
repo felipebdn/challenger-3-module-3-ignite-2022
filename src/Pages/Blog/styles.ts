@@ -10,13 +10,15 @@ export const Inssues = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 
-  div {
+  a {
     padding: 2rem;
     background: ${(props) => props.theme['base-post']};
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+
+    text-decoration: none;
 
     border: 2px solid transparent;
 
