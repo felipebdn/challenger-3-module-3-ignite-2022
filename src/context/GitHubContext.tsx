@@ -39,18 +39,39 @@ export function GitHubContextProvider({
   const [issues, setIssues] = useState({} as IssuesDataProps[])
 
   const FetchProfile = useCallback(async () => {
-    await api
-      .get('users/felipebdn')
-      .then((res) => setProfile(res.data))
-      .catch((erro) => console.log(erro))
+    const res = await api.get('users/felipebdn', {
+      params: {
+        _sort: 'createdAt',
+      },
+    })
+    setProfile(res.data)
   }, [])
 
   const FetchRepo = useCallback(async () => {
-    await api
-      .get('repos/rocketseat-education/reactjs-github-blog-challenge/issues')
-      .then((res) => setIssues(res.data))
-      .catch((error) => console.log(error))
+    const res = await api.get(
+      'repos/rocketseat-education/reactjs-github-blog-challenge/issues',
+      {
+        params: {
+          _sort: 'createdAt',
+        },
+      },
+    )
+    setIssues(res.data)
   }, [])
+
+  // const FetchProfile = useCallback(async () => {
+  //   await api
+  //     .get('users/felipebdn')
+  //     .then((res) => setProfile(res.data))
+  //     .catch((erro) => console.log(erro))
+  // }, [])
+
+  // const FetchRepo = useCallback(async () => {
+  //   await api
+  //     .get('repos/rocketseat-education/reactjs-github-blog-challenge/issues')
+  //     .then((res) => setIssues(res.data))
+  //     .catch((error) => console.log(error))
+  // }, [])
 
   useEffect(() => {
     FetchProfile()
