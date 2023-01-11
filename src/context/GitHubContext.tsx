@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import { api } from '../lib/axios'
 
 interface GitHubContextProviderProps {
@@ -32,22 +38,24 @@ export function GitHubContextProvider({
   const [profile, setProfile] = useState({} as ProfileDataProps)
   const [issues, setIssues] = useState({} as IssuesDataProps[])
 
-  async function FetchProfile() {
+  const FetchProfile = useCallback(async () => {
     await api
       .get('users/felipebdn')
       .then((res) => setProfile(res.data))
       .catch((erro) => console.log(erro))
-  }
-  async function FetchRepo() {
+  }, [])
+
+  const FetchRepo = useCallback(async () => {
     await api
       .get('repos/rocketseat-education/reactjs-github-blog-challenge/issues')
       .then((res) => setIssues(res.data))
       .catch((error) => console.log(error))
-  }
+  }, [])
+
   useEffect(() => {
     FetchProfile()
     FetchRepo()
-  }, [])
+  }, [FetchProfile, FetchRepo])
 
   return (
     <GitHubContext.Provider value={{ profile, issues }}>
