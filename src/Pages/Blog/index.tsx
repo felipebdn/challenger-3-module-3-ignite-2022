@@ -3,21 +3,22 @@ import { useContextSelector } from 'use-context-selector'
 import { Profile } from '../../components/Profile'
 import { GitHubContext } from '../../context/GitHubContext'
 import { ShearchInssues } from './ShearchInssues'
-import { Inssues } from './styles'
+import { Issues } from './styles'
 
 export function Blog() {
   const issues = useContextSelector(GitHubContext, (context) => {
     return context.issues
   })
-
   return (
     <>
       <Profile />
       <ShearchInssues />
-      <Inssues>
+      <Issues>
         {issues.map((issue) => {
+          console.log(issue.id)
+
           return (
-            <NavLink to="/inssue" key={issue.id}>
+            <NavLink to={`/issue/${issue.id}`} key={issue.id}>
               <header>
                 <h2>{issue.title}</h2>
                 <span>{issue.updated_at}</span>
@@ -26,7 +27,7 @@ export function Blog() {
             </NavLink>
           )
         })}
-      </Inssues>
+      </Issues>
     </>
   )
 }

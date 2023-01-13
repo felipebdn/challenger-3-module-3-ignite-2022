@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Inssues = styled.div`
+export const Issues = styled.div`
   width: 100%;
   max-width: 1120px;
   padding: 3rem 0 0;

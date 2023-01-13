@@ -1,10 +1,5 @@
-import {
-  createContext,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
+import { createContext } from 'use-context-selector'
 import { api } from '../lib/axios'
 
 interface GitHubContextProviderProps {
@@ -36,7 +31,7 @@ export function GitHubContextProvider({
   children,
 }: GitHubContextProviderProps) {
   const [profile, setProfile] = useState({} as ProfileDataProps)
-  const [issues, setIssues] = useState({} as IssuesDataProps[])
+  const [issues, setIssues] = useState([] as IssuesDataProps[])
 
   const FetchProfile = useCallback(async () => {
     const res = await api.get('users/felipebdn', {

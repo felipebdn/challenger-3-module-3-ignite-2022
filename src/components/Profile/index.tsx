@@ -14,8 +14,6 @@ export function Profile() {
     return context.profile
   })
 
-  // const { profile } = useContext(GitHubContext)
-
   return (
     <ProfileContainer>
       <div>

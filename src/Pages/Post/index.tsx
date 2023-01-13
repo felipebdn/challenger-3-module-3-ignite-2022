@@ -10,6 +10,8 @@ import { NavLink } from 'react-router-dom'
 import { HeaderPost, PostContainer, PostContent } from './styles'
 
 export function Post() {
+  // const { issueId } = useParams()
+
   return (
     <PostContainer>
       <HeaderPost>
