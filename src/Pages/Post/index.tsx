@@ -6,11 +6,20 @@ import {
   faComment,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { NavLink, useParams } from 'react-router-dom'
+import { GitHubContext } from '../../context/GitHubContext'
 import { HeaderPost, PostContainer, PostContent } from './styles'
 
 export function Post() {
-  // const { issueId } = useParams()
+  const { issueId } = useParams()
+  const { issues } = useContext(GitHubContext)
+
+  const issue = issues.filter((issueindex) => {
+    return issueindex.id === issueId
+  })
+
+  console.log(issue)
 
   return (
     <PostContainer>

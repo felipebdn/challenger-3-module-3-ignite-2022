@@ -5,14 +5,12 @@ import {
   faArrowUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useContextSelector } from 'use-context-selector'
+import { useContext } from 'react'
 import { GitHubContext } from '../../context/GitHubContext'
 import { ProfileContainer, HeaderProfile, FooterProfile } from './styles'
 
 export function Profile() {
-  const profile = useContextSelector(GitHubContext, (context) => {
-    return context.profile
-  })
+  const { profile } = useContext(GitHubContext)
 
   return (
     <ProfileContainer>

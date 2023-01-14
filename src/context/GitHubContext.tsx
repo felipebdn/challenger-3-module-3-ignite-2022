@@ -1,5 +1,10 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react'
-import { createContext } from 'use-context-selector'
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import { api } from '../lib/axios'
 
 interface GitHubContextProviderProps {
@@ -15,7 +20,14 @@ interface ProfileDataProps {
   followers: string
 }
 interface IssuesDataProps {
-  id: number
+  id: string
+  title: string
+  body: string
+  updated_at: string
+  number: number
+}
+interface IssueDataProps {
+  id: string
   title: string
   body: string
   updated_at: string
@@ -23,6 +35,8 @@ interface IssuesDataProps {
 interface GitHubContextProviderType {
   profile: ProfileDataProps
   issues: IssuesDataProps[]
+  issue: IssueDataProps
+  FetchIssueById: (id: string) => void
 }
 
 export const GitHubContext = createContext({} as GitHubContextProviderType)
@@ -32,6 +46,7 @@ export function GitHubContextProvider({
 }: GitHubContextProviderProps) {
   const [profile, setProfile] = useState({} as ProfileDataProps)
   const [issues, setIssues] = useState([] as IssuesDataProps[])
+  const [issue, setIssue] = useState({} as IssueDataProps)
 
   const FetchProfile = useCallback(async () => {
     const res = await api.get('users/felipebdn', {
@@ -54,19 +69,14 @@ export function GitHubContextProvider({
     setIssues(res.data)
   }, [])
 
-  // const FetchProfile = useCallback(async () => {
-  //   await api
-  //     .get('users/felipebdn')
-  //     .then((res) => setProfile(res.data))
-  //     .catch((erro) => console.log(erro))
-  // }, [])
-
-  // const FetchRepo = useCallback(async () => {
-  //   await api
-  //     .get('repos/rocketseat-education/reactjs-github-blog-challenge/issues')
-  //     .then((res) => setIssues(res.data))
-  //     .catch((error) => console.log(error))
-  // }, [])
+  async function FetchIssueById(id: string) {
+    const res = await api.get(, {
+      params: {
+        _sort: 'createdAt',
+      },
+    })
+    setIssue(res.data)
+  }
 
   useEffect(() => {
     FetchProfile()
@@ -74,7 +84,7 @@ export function GitHubContextProvider({
   }, [FetchProfile, FetchRepo])
 
   return (
-    <GitHubContext.Provider value={{ profile, issues }}>
+    <GitHubContext.Provider value={{ issue, FetchIssueById, profile, issues }}>
       {children}
     </GitHubContext.Provider>
   )
