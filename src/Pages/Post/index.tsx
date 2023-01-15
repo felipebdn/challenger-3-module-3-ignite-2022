@@ -12,14 +12,11 @@ import { GitHubContext } from '../../context/GitHubContext'
 import { HeaderPost, PostContainer, PostContent } from './styles'
 
 export function Post() {
-  const { issueId } = useParams()
-  const { issues } = useContext(GitHubContext)
+  const { issueId } = useParams<{ issueId: string }>()
+  const { FetchIssueById } = useContext(GitHubContext)
+  console.log(issueId)
 
-  const issue = issues.filter((issueindex) => {
-    return issueindex.id === issueId
-  })
-
-  console.log(issue)
+  FetchIssueById(issueId)
 
   return (
     <PostContainer>
