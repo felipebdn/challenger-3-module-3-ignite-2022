@@ -7,9 +7,6 @@ import { Issues } from './styles'
 
 export function Blog() {
   const { issues } = useContext(GitHubContext)
-  // const issues = useContextSelector(GitHubContext, (context) => {
-  //   return context.issues
-  // })
   return (
     <>
       <Profile />
@@ -17,7 +14,7 @@ export function Blog() {
       <Issues>
         {issues.map((issue) => {
           return (
-            <NavLink to={`/issue/${issue.id}`} key={issue.id}>
+            <NavLink to={`/issue/${issue.number}`} key={issue.id}>
               <header>
                 <h2>{issue.title}</h2>
                 <span>{issue.updated_at}</span>

@@ -11,12 +11,15 @@ import { NavLink, useParams } from 'react-router-dom'
 import { GitHubContext } from '../../context/GitHubContext'
 import { HeaderPost, PostContainer, PostContent } from './styles'
 
-export function Post() {
-  const { issueId } = useParams<{ issueId: string }>()
-  const { FetchIssueById } = useContext(GitHubContext)
-  console.log(issueId)
+type MyParams = {
+  issueNumber: string
+}
 
-  FetchIssueById(issueId)
+export function Post() {
+  const { issueNumber } = useParams<keyof MyParams>() as MyParams
+  const { FetchIssueById } = useContext(GitHubContext)
+
+  FetchIssueById(issueNumber)
 
   return (
     <PostContainer>

@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from 'react'
-import { api, getIssueById } from '../lib/axios'
+import { api, getIssueByNumber } from '../lib/axios'
 
 interface GitHubContextProviderProps {
   children: ReactNode
@@ -60,8 +60,8 @@ export function GitHubContextProvider({
     setIssues(res.data)
   }, [])
 
-  async function FetchIssueById(id: string) {
-    const res = await getIssueById.get(id)
+  async function FetchIssueById(number: string) {
+    const res = await getIssueByNumber.get(number)
     console.log(res.data)
 
     setIssue(res.data)
