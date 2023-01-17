@@ -21,11 +21,16 @@ interface IssuesDataProps {
   updated_at: string
   number: number
 }
+type userIssueProps = {
+  login: string
+}
 interface IssueDataProps {
   id: string
   title: string
   body: string
   updated_at: string
+  user: userIssueProps
+  comments: number
 }
 interface GitHubContextProviderType {
   profile: ProfileDataProps
