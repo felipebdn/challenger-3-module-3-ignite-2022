@@ -1,10 +1,5 @@
-import {
-  createContext,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
+import { createContext } from 'use-context-selector'
 import { api, getIssueByNumber } from '../lib/axios'
 
 interface GitHubContextProviderProps {
@@ -60,12 +55,12 @@ export function GitHubContextProvider({
     setIssues(res.data)
   }, [])
 
-  async function FetchIssueById(number: string) {
+  const FetchIssueById = useCallback(async (number: string) => {
     const res = await getIssueByNumber.get(number)
     console.log(res.data)
 
     setIssue(res.data)
-  }
+  }, [])
 
   useEffect(() => {
     FetchProfile()

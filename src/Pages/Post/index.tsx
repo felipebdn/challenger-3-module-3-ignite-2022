@@ -6,22 +6,27 @@ import {
   faComment,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NavLink } from 'react-router-dom'
-// import { useContext } from 'react'
-// import { NavLink, useParams } from 'react-router-dom'
-// import { GitHubContext } from '../../context/GitHubContext'
+import { NavLink, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { GitHubContext } from '../../context/GitHubContext'
 import { HeaderPost, PostContainer, PostContent } from './styles'
+import { useContextSelector } from 'use-context-selector'
 
-// type MyParams = {
-//   issueNumber: string
-// }
+type MyParams = {
+  issueNumber: string
+}
 
 export function Post() {
-  // const { issueNumber } = useParams<keyof MyParams>() as MyParams
-  // const { FetchIssueById } = useContext(GitHubContext)
-
-  // FetchIssueById(issueNumber)
-  console.log('teste')
+  const { issueNumber } = useParams<keyof MyParams>() as MyParams
+  const FetchIssueById = useContextSelector(GitHubContext, (context) => {
+    return context.FetchIssueById
+  })
+  const issue = useContextSelector(GitHubContext, (context) => {
+    return context.issue
+  })
+  useEffect(() => {
+    FetchIssueById(issueNumber)
+  }, [FetchIssueById, issueNumber])
 
   return (
     <PostContainer>
