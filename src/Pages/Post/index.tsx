@@ -6,20 +6,22 @@ import {
   faComment,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useContext } from 'react'
-import { NavLink, useParams } from 'react-router-dom'
-import { GitHubContext } from '../../context/GitHubContext'
+import { NavLink } from 'react-router-dom'
+// import { useContext } from 'react'
+// import { NavLink, useParams } from 'react-router-dom'
+// import { GitHubContext } from '../../context/GitHubContext'
 import { HeaderPost, PostContainer, PostContent } from './styles'
 
-type MyParams = {
-  issueNumber: string
-}
+// type MyParams = {
+//   issueNumber: string
+// }
 
 export function Post() {
-  const { issueNumber } = useParams<keyof MyParams>() as MyParams
-  const { FetchIssueById } = useContext(GitHubContext)
+  // const { issueNumber } = useParams<keyof MyParams>() as MyParams
+  // const { FetchIssueById } = useContext(GitHubContext)
 
-  FetchIssueById(issueNumber)
+  // FetchIssueById(issueNumber)
+  console.log('teste')
 
   return (
     <PostContainer>
