@@ -62,7 +62,6 @@ export function GitHubContextProvider({
 
   const FetchIssueById = useCallback(async (number: string) => {
     const res = await getIssueByNumber.get(number)
-    console.log(res.data)
 
     setIssue(res.data)
   }, [])

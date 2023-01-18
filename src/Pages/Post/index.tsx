@@ -18,18 +18,13 @@ type MyParams = {
 
 export function Post() {
   const { issueNumber } = useParams<keyof MyParams>() as MyParams
-  const FetchIssueById = useContextSelector(GitHubContext, (context) => {
-    return context.FetchIssueById
-  })
-  const issue = useContextSelector(GitHubContext, (context) => {
-    return context.issue
+
+  const { FetchIssueById } = useContextSelector(GitHubContext, (context) => {
+    return context
   })
   useEffect(() => {
     FetchIssueById(issueNumber)
   }, [FetchIssueById, issueNumber])
-
-  const { body, comments, title } = issue
-  const { login } = issue.user
 
   return (
     <PostContainer>
@@ -44,11 +39,11 @@ export function Post() {
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </a>
         </header>
-        <h2>{title}</h2>
+        <h2>{}</h2>
         <footer>
           <div>
             <FontAwesomeIcon icon={faGithub} />
-            <span>{login}</span>
+            <span>{}</span>
           </div>
           <div>
             <FontAwesomeIcon icon={faCalendarDay} />
@@ -56,12 +51,12 @@ export function Post() {
           </div>
           <div>
             <FontAwesomeIcon icon={faComment} />
-            <span>{comments} comentários</span>
+            <span>{} comentários</span>
           </div>
         </footer>
       </HeaderPost>
 
-      <PostContent>{body}</PostContent>
+      <PostContent>{}</PostContent>
     </PostContainer>
   )
 }
