@@ -21,7 +21,7 @@ interface IssuesDataProps {
   updated_at: string
   number: number
 }
-type userIssueProps = {
+interface userIssueProps {
   login: string
 }
 interface IssueDataProps {
@@ -62,8 +62,9 @@ export function GitHubContextProvider({
 
   const FetchIssueById = useCallback(async (number: string) => {
     const res = await getIssueByNumber.get(number)
+    console.log(res)
 
-    setIssue(res.data)
+    // setIssue(res.data)
   }, [])
 
   useEffect(() => {
