@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Issues = styled.div`
   width: 100%;
   max-width: 1120px;
-  padding: 3rem 0 0;
+  padding: 3rem 0 5rem;
   margin: 0 auto;
 
   display: grid;

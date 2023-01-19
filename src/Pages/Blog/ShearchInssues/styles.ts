@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ShearchInssuesContainer = styled.div`
+export const ShearchInssuesContainer = styled.form`
   width: 100%;
   max-width: 1120px;
   padding: 4rem 0 0;

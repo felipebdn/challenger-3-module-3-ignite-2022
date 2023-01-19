@@ -19,7 +19,7 @@ export const ProfileContainer = styled.div`
       width: 100%;
       border-radius: 8px;
     }
-    width: 20%;
+    width: 13%;
   }
 `
 export const HeaderProfile = styled.aside`
