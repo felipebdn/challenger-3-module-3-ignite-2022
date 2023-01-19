@@ -78,4 +78,10 @@ export const PostContent = styled.div`
   max-width: 1120px;
   margin: 0 auto;
   padding: 2.5rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  margin-bottom: 8rem;
 `

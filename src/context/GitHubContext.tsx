@@ -51,16 +51,12 @@ export function GitHubContextProvider({
   }, [])
 
   const FetchRepo = useCallback(async () => {
-    const res = await api.get(
-      'repos/rocketseat-education/reactjs-github-blog-challenge/issues',
-    )
+    const res = await api.get('repos/GBDev13/blog-posts/issues')
     setIssues(res.data)
   }, [])
 
   const FetchIssueById = useCallback(async (number: string) => {
-    const res = await api.get(
-      `repos/rocketseat-education/reactjs-github-blog-challenge/issues/${number}`,
-    )
+    const res = await api.get(`repos/GBDev13/blog-posts/issues/${number}`)
     const data: IssueDataProps = {
       id: res.data.id,
       body: res.data.body,

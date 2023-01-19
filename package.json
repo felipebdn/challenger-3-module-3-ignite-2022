@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.5",
     "react-router-dom": "^6.6.1",
+    "remark-gfm": "^3.0.1",
     "styled-components": "^5.3.6",
     "use-context-selector": "^1.4.1"
   },
