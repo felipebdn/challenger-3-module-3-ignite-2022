@@ -1,6 +1,6 @@
 import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { createContext } from 'use-context-selector'
-import { api, getIssueByNumber } from '../lib/axios'
+import { api } from '../lib/axios'
 
 interface GitHubContextProviderProps {
   children: ReactNode
@@ -21,15 +21,12 @@ interface IssuesDataProps {
   updated_at: string
   number: number
 }
-interface userIssueProps {
-  login: string
-}
 interface IssueDataProps {
   id: string
   title: string
   body: string
   updated_at: string
-  user: userIssueProps
+  user: string
   comments: number
 }
 interface GitHubContextProviderType {
@@ -61,10 +58,19 @@ export function GitHubContextProvider({
   }, [])
 
   const FetchIssueById = useCallback(async (number: string) => {
-    const res = await getIssueByNumber.get(number)
-    console.log(res)
+    const res = await api.get(
+      `repos/rocketseat-education/reactjs-github-blog-challenge/issues/${number}`,
+    )
+    const data: IssueDataProps = {
+      id: res.data.id,
+      body: res.data.body,
+      comments: res.data.comments,
+      title: res.data.title,
+      updated_at: res.data.updated_at,
+      user: res.data.user.login,
+    }
 
-    // setIssue(res.data)
+    setIssue(data)
   }, [])
 
   useEffect(() => {

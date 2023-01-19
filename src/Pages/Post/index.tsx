@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import { GitHubContext } from '../../context/GitHubContext'
 import { HeaderPost, PostContainer, PostContent } from './styles'
 import { useContextSelector } from 'use-context-selector'
+import ReactMarkdown from 'react-markdown'
 
 type MyParams = {
   issueNumber: string
@@ -46,7 +47,7 @@ export function Post() {
         <footer>
           <div>
             <FontAwesomeIcon icon={faGithub} />
-            <span>{}</span>
+            <span>{issue.user}</span>
           </div>
           <div>
             <FontAwesomeIcon icon={faCalendarDay} />
@@ -54,12 +55,14 @@ export function Post() {
           </div>
           <div>
             <FontAwesomeIcon icon={faComment} />
-            <span>{} comentários</span>
+            <span>{issue.comments} comentários</span>
           </div>
         </footer>
       </HeaderPost>
 
-      <PostContent>{}</PostContent>
+      <PostContent>
+        <ReactMarkdown>{issue.body}</ReactMarkdown>
+      </PostContent>
     </PostContainer>
   )
 }
